@@ -8,7 +8,7 @@ redis = Redis(host='localhost', port=6379, db=0)
 
 
 def _send(user_socket_id, msg):
-    redis.publish(SERVER_CHANNEL, json.dumps({
+    return redis.publish(SERVER_CHANNEL, json.dumps({
         USER_SOCKET_ID: user_socket_id,
         MESSAGE: msg,
     }))
