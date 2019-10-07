@@ -7,14 +7,15 @@
         <script>
             var socket = io('ws://127.0.0.1:5000');
             socket.on('connect', function(data){
-            console.log(data);
+                console.log(data);
+                socket.emit('join_room', 'sample_socket_id');
                 socket.emit('join_room', 'sample_socket_id');
             });
             socket.on('notify_user', function(data){
-                debugger;
+                console.log('notify_user', data);
             });
             socket.on('disconnect', function(data){
-                debugger;
+                console.log('disconnect', data);
             });
         </script>
     </head>

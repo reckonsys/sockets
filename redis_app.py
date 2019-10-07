@@ -12,4 +12,3 @@ def _send(user_socket_id, msg):
         USER_SOCKET_ID: user_socket_id,
         MESSAGE: msg,
     }))
-
