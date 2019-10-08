@@ -5,11 +5,17 @@
         <meta name="viewport" content="width=device-width">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
         <script>
-            var socket = io('ws://127.0.0.1:5000');
+            var socket = io('ws://localhost:5000' ,  {
+                transportOptions: {
+                    polling: {
+                        extraHeaders: {
+                            user_socket_id: 'sample_socket_id'
+                        }
+                    }
+                }
+            });
             socket.on('connect', function(data){
-                console.log(data);
-                socket.emit('join_room', 'sample_socket_id');
-                socket.emit('join_room', 'sample_socket_id');
+                console.log('connect', data);
             });
             socket.on('notify_user', function(data){
                 console.log('notify_user', data);

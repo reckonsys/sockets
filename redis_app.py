@@ -1,14 +1,8 @@
-import json
-from redis import Redis
+from socketio import RedisManager, Server
 
-MESSAGE = 'msg'
-USER_SOCKET_ID = 'user_socket_id'
-SERVER_CHANNEL = 'edvay-server-channel'
-redis = Redis(host='localhost', port=6379, db=0)
+mgr = RedisManager('redis://localhost:6379/0')  # , write_only=True)
+sio = Server(client_manager=mgr, cors_allowed_origins='*')
 
 
 def _send(user_socket_id, msg):
-    return redis.publish(SERVER_CHANNEL, json.dumps({
-        USER_SOCKET_ID: user_socket_id,
-        MESSAGE: msg,
-    }))
+    sio.emit('notify_user', {'data': msg}, room=user_socket_id)

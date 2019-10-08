@@ -12,6 +12,7 @@ ipdb = "*"
 eventlet = "*"
 python-socketio = "*"
 redis = "*"
+gevent = "*"
 
 [requires]
 python_version = "3.7"
